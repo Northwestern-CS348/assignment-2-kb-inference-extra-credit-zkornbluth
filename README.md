@@ -39,7 +39,7 @@ Generating a line for a Rule should follow a similar procedure: instead of gener
 
 If the Fact queried is not in the KB, kb_explain should return "Fact is not in the KB"; for a missing Rule, it should return "Rule is not in the KB". Any input other than Fact or Rule instances should lead to returning False. 
 
-If the same fact or rule is used in multiple supports, you must repeat its own supports along with it every time it appears. As with Assignment 2, you may assume that there are no circular dependencies (supports). 
+If the same fact or rule is used in multiple supports, you must repeat its own supports along with it every time it appears. As with Assignment 2, you may assume that there are no circular dependencies (supports). The supports of a Fact / Rule should be presented in the order specified by its `supported_by` list. When delivering each support pair, the Fact should be placed before the Rule. 
 
 ### Testing
 
