@@ -142,7 +142,48 @@ class KnowledgeBase(object):
         """
         ####################################################
         # Student code goes here
+        ret_str = ""
+        if (fact_or_rule in self.facts) or (fact_or_rule in self.rules):
+            assert_checker = ""
+            if isinstance(fact_or_rule, Fact):
+                ret_str += ('fact: ' + self.print_statement(fact_or_rule.statement) + '\n')
+            elif isinstance(fact_or_rule, Rule):
+                left_statements = "("
+                for statement in fact_or_rule.lhs:
+                    left_statements += self.print_statement(statement) + ','
+                left_statements[-1] = ')'
+                ret_str += ('rule: ' + left_statements + ' -> ' + self.print_statement(fact_or_rule.rhs) + '\n')
+            ret_str += ('  SUPPORTED BY')
+            for i in fact_or_rule.supported_by:
+                assert_checker = ""
 
+                if i.asserted:
+                    assert_checker = " ASSERTED"
+
+                if isinstance(i, Fact):
+                    ret_str += '    fact: ' + self.print_statement(i.statement) + assert_checker + '\n'
+
+                elif isinstance(i, Rule):
+                    left_statements = "("
+                    for statement in i.lhs:
+                        left_statements += self.print_statement(statement) + ','
+                    left_statements[-1] = ')'
+                    ret_str += '    rule: ' + left_statements + ' -> ' + self.print_statement(i.rhs) + assert_checker + '\n'
+        else:
+            if isinstance(fact_or_rule, Fact):
+                ret_str = "Fact is not in the KB"
+            else:
+                ret_str = 'Rule is not in the KB'
+        return ret_str
+
+    def print_statement(self, statement):
+        ret_str = "("
+        ret_str += str(statement.predicate)
+        for t in statement.terms:
+            ret_str += " "
+            ret_str += str(t)
+        ret_str += ")"
+        return ret_str
 
 class InferenceEngine(object):
     def fc_infer(self, fact, rule, kb):
