@@ -1,0 +1,14 @@
+TESTS WITH ERRORS 
+test03 (gradingtests.UnitTests)
+Traceback (most recent call last):
+  File "/Users/k2i/academics/automatedgradingapp/app/testing/kb-inference-ec/gradingtests.py", line 73, in test03
+    actual = self.KB.kb_explain(fact4)
+  File "/Users/k2i/academics/automatedgradingapp/app/testing/kb-inference-ec/student_code.py", line 160, in kb_explain
+    if i.asserted:
+AttributeError: 'list' object has no attribute 'asserted'
+
+-------------------------------
+TESTS FAILED  
+-------------------------------
+TESTS SKIPPED 
+-------------------------------
